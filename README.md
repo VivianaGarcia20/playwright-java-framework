@@ -1,21 +1,20 @@
-🎭 Playwright Java Automation Framework
-Framework de automatización de pruebas end-to-end (E2E) para aplicaciones Web y Mobile (emulación), diseñado sobre la arquitectura Page Object Model (POM) utilizando Java, Playwright y JUnit 5.
+# 🎭 Playwright Java Automation Framework
 
-🚀 Tecnologías Utilizadas
-Lenguaje: Java 21
+Framework de automatización de pruebas end-to-end (E2E) para aplicaciones Web y Mobile (emulación Pixel 5), diseñado sobre la arquitectura **Page Object Model (POM)** utilizando Java, Playwright y JUnit 5.
 
-Herramienta de Automatización: Playwright (v1.48.0)
+## 🚀 Tecnologías Utilizadas
 
-Framework de Pruebas: JUnit 5 (Jupiter)
+* **Lenguaje:** Java 21
+* **Herramienta de Automatización:** Playwright (v1.48.0)
+* **Framework de Pruebas:** JUnit 5 (Jupiter)
+* **Gestor de Dependencias:** Maven
+* **Entorno de Desarrollo:** Visual Studio Code
 
-Gestor de Dependencias: Maven
+## 📁 Estructura del Proyecto
 
-Entorno de Desarrollo: Visual Studio Code
-
-📁 Estructura del Proyecto
 El proyecto sigue la arquitectura estándar de Maven y el patrón de diseño Page Object Model para garantizar un código modular, mantenible y escalable:
 
-Plaintext
+```text
 playwright-framework-java/
 ├── .gitignore
 ├── pom.xml
@@ -26,7 +25,7 @@ playwright-framework-java/
     │       └── com/
     │           └── saucedemo/
     │               ├── factory/
-    │               │   └── PlaywrightFactory.java  # Control del ciclo de vida del Browser/Page
+    │               │   └── PlaywrightFactory.java  # Soporte de inicialización para Desktop y Mobile (Pixel 5)
     │               └── pages/
     │                   └── HomePage.java           # Selectores y acciones de la página principal
     └── test/
@@ -36,7 +35,7 @@ playwright-framework-java/
                     ├── base/
                     │   └── BaseTest.java          # Setup (@BeforeEach) y Teardown (@AfterEach)
                     └── tests/
-                        └── HomeTest.java          # Casos de prueba automatizados
+                        └── HomeTest.java          # Casos de prueba automatizados (Desktop & Mobile)
 🛠️ Requisitos Previos
 JDK: Java 21 o superior instalado y configurado en el sistema.
 
@@ -48,7 +47,13 @@ Abre el panel de Testing (icono del tubo de ensayo en la barra lateral izquierda
 
 Haz clic en el icono de Refresh (flechas en círculo) si es necesario.
 
-Haz clic en el botón de Play (▶) sobre la clase HomeTest o el método individual.
+Despliega la clase HomeTest para ver la suite de casos de prueba:
+
+TC01 - Verificar elementos principales en Desktop
+
+TC02 - Verificar elementos principales en Mobile (Pixel 5)
+
+Haz clic en el botón de Play (▶) sobre la clase HomeTest para ejecutar todos los casos o sobre un caso individual.
 
 Desde la Terminal (si Maven está configurado en el PATH)
 Bash
