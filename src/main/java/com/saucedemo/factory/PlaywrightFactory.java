@@ -9,38 +9,32 @@ public class PlaywrightFactory {
     private BrowserContext context;
     private Page page;
 
-    /**
-     * Inicializa el navegador y contexto según el tipo de ejecución ("desktop" o "mobile")
-     */
-    public Page initPage(String isMobile) {
+    public Page initBrowser(String deviceType) {
         playwright = Playwright.create();
         
-        // Lanzamos el navegador Chromium en modo visible (headless = false)
-        browser = playwright.chromium().launch(
-            new BrowserType.LaunchOptions().setHeadless(false)
-        );
+        browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(true));
 
-        if ("true".equalsIgnoreCase(isMobile)) {
-            // Emulación de dispositivo móvil (Pixel 5)
+        if (deviceType.equalsIgnoreCase("mobile")) {
+            // Configuración exacta de emulación para Google Pixel 5
             context = browser.newContext(new Browser.NewContextOptions()
+                    .setUserAgent("Mozilla/5.0 (Linux; Android 11; Pixel 5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36")
                     .setViewportSize(393, 851)
                     .setDeviceScaleFactor(2.75)
                     .setIsMobile(true)
-                    .setHasTouch(true)
-                    .setUserAgent("Mozilla/5.0 (Linux; Android 11; Pixel 5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36")
-            );
+                    .setHasTouch(true));
+            
+            System.out.println("--> Iniciando sesión en modo Mobile (Pixel 5)");
         } else {
-            // Vista Desktop con pantalla completa
-            context = browser.newContext(new Browser.NewContextOptions()
-                    .setViewportSize(1920, 1080)
-            );
+            // Configuración Desktop por defecto
+            context = browser.newContext(new Browser.NewContextOptions().setViewportSize(1280, 720));
+            System.out.println("--> Iniciando sesión en modo Desktop");
         }
 
         page = context.newPage();
         return page;
     }
 
-    public void closePage() {
+    public void closeBrowser() {
         if (context != null) context.close();
         if (browser != null) browser.close();
         if (playwright != null) playwright.close();

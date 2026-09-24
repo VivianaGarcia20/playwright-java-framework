@@ -12,18 +12,15 @@ public class BaseTest {
     protected Page page;
     protected HomePage homePage;
 
-    protected String isMobile = System.getProperty("isMobile", "false");
-
     @BeforeEach
     public void setUp() {
         playwrightFactory = new PlaywrightFactory();
-        page = playwrightFactory.initPage(isMobile);
-        homePage = new HomePage(page);
     }
 
     @AfterEach
     public void tearDown() {
-        playwrightFactory.closePage();
+        if (playwrightFactory != null) {
+            playwrightFactory.closeBrowser();
+        }
     }
 }
- 
