@@ -1,0 +1,25 @@
+# Java y Maven
+target/
+*.class
+
+# IDE y Editor (VS Code / Eclipse / IntelliJ)
+.vscode/
+.settings/
+.classpath
+.project
+.idea/
+*.iml
+
+# Node / Playwright
+node_modules/
+test-results/
+playwright-report/
+blob-report/
+playwright/.cache/
+
+# Archivos temporales del sistema
+.DS_Store
+Thumbs.db
+mvnw
+mvnw.cmd
+.mvn/
